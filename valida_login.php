@@ -1,17 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   <?php
-    echo $_POST ['email'];
-    echo '<br/>';
-    echo $_POST ['password'];
+<?php
+    $errormsg = false;
+    if (!isset($_POST) || empty($_POST))
+    {
+        $errormsg = 'Preencha os campos';
+    }
 
+    foreach ($_POST as $key => $value) {
+        // REMOVER TAGS HTML
+        // REMOVE ESPAÇOS EM BRANCO DO $VALUE
+        $$key = trim(strip_tags($value));
+
+        //AGORA VERIFICA SE ALGUM CAMPO ESTÁ NULL
+    }
+    if (empty($value)) {
+        $errormsg = 'Existem campos em branco';
+        echo "$errormsg";
+    }
+
+    // ----------------- EMAIL ------------------ //
+
+    //VERIFICA SE O EMAIL EXISTE E SE É DE FATO UM EMAIL
+
+    if (!isset($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) && !$errormsg) {
+        $errormsg = 'Digite um email válido';
+    }
+    header("location:home.php");
 ?>
-</body">
-</html>
