@@ -1,28 +1,20 @@
 <?php
-    $errormsg = false;
-    if (!isset($_POST) || empty($_POST))
-    {
-        $errormsg = 'Preencha os campos';
+$usuarios = array(
+    array('email' => 'admin@gmail.com', 'password' => '123456'),
+    array('email' => 'admin2@gmail.com', 'password' => '123456789'),
+);
+    $errormsg = true;
+
+    foreach ($usuarios as $user) {
+       if($user['email'] == $_POST['email'] && $user['password'] == $_POST['password']){
+            $errormsg = false;
+            //VARIAVEL DE ERRO COM VALOR FALSO = USUARIO AUTENTICADO
+       }
     }
 
-    foreach ($_POST as $key => $value) {
-        // REMOVER TAGS HTML
-        // REMOVE ESPAÇOS EM BRANCO DO $VALUE
-        $$key = trim(strip_tags($value));
-
-        //AGORA VERIFICA SE ALGUM CAMPO ESTÁ NULL
+    if ($errormsg == false) {
+        header('Location: home.php');
+    } else {
+        header('Location: index.php?login=erro');
     }
-    if (empty($value)) {
-        $errormsg = 'Existem campos em branco';
-        echo "$errormsg";
-    }
-
-    // ----------------- EMAIL ------------------ //
-
-    //VERIFICA SE O EMAIL EXISTE E SE É DE FATO UM EMAIL
-
-    if (!isset($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) && !$errormsg) {
-        $errormsg = 'Digite um email válido';
-    }
-    header("location:home.php");
 ?>
