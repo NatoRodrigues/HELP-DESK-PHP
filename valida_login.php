@@ -12,12 +12,12 @@ $usuario_autenticado = false;
 
 //USUARIOS DO SISTEMA
 $usuarios_app = array(
-    array('email' => 'adm@teste.com.br', 'senha' => '123456'),
-    array('email' => 'user@teste.com.br', 'senha' => 'abcd')
+    array('email' => 'adm@gmail.com.br', 'password' => '123456'),
+    array('email' => 'user@gmail.com.br', 'password' => 'abcd')
 );
 
 foreach($usuarios_app as $user){
-    if($user['email'] == $_POST['email'] && $user['senha'] == $_POST['senha']){
+    if($user['email'] == $_POST['email'] && $user['password'] == $_POST['password']){
         $usuario_autenticado = true;
     }
 }
